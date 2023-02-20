@@ -20,13 +20,13 @@ class Timer extends React.Component {
       this.setState({
         second: this.state.second + 1,
       });
-      if(this.state.second == 60){
+      if(this.state.second === 60){
         this.setState({
           second : 0,
           minute : this.state.minute + 1,
         });
       }
-      if(this.state.minute == 60){
+      if(this.state.minute === 60){
         this.setState({
           minute: 0,
           hour: this.state.hour = 1,
@@ -64,9 +64,10 @@ class Timer extends React.Component {
           <button className='action-button start-button' onClick={this.startInterval}>Start</button>
           <button className='action-button stop-button' onClick={this.stopInterval}>Stop</button>
           <button className='action-button reset-button' onClick={this.resetInterval}>Reset</button>
-          <button className='action-button reset-button' onClick={this.props.handleSetTitle}>Test</button>
+          <button className='action-button reset-button' onClick={this.props.handleSetIsLight}
+          style={{backgroundColor: this.props.isLight ? 'black' : 'white', color: this.props.isLight ? 'white' : 'black'}}
+          >{this.props.isLight ? 'Dark' : 'Light'}</button>
         </div>
-        
       </>
     );
   }
