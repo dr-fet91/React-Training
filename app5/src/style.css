@@ -25,3 +25,23 @@ body {
     background: black;
     color: chocolate;
 }
+.action-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+    transition: all 100ms;
+}
+.action-button:hover{
+    scale: 1.2;
+}
+.start-button{
+    background-color: green;
+}
+.stop-button{
+    background-color: red;
+}
+.reset-button{
+    background-color: grey;
+}

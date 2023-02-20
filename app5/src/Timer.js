@@ -4,38 +4,68 @@ class Timer extends React.Component {
   constructor() {
     super();
     this.state = {
-      time: new Date().toLocaleTimeString(),
+      isStart: false,
+      hour: 0,
+      minute: 0,
+      second: 0
     }
   }
-  componentDidMount() {
+
+  startInterval = ()=>{
+    if(this.state.isStart){
+      return;
+    }
+    this.state.isStart = true;
     interval = setInterval(() => {
-      this.setState(
-        {
-          time: new Date().toLocaleTimeString(),
-        }
-      );
+      this.setState({
+        second: this.state.second + 1,
+      });
+      if(this.state.second == 60){
+        this.setState({
+          second : 0,
+          minute : this.state.minute + 1,
+        });
+      }
+      if(this.state.minute == 60){
+        this.setState({
+          minute: 0,
+          hour: this.state.hour = 1,
+        })
+      }
     }, 1000);
   }
-  componentDidUpdate() {
-    if (this.state.time == '11:53:35 PM') {
-      clearInterval(interval);
-    }
+  stopInterval = ()=>{
+    this.setState({
+      isStart: false,
+    });
+    clearInterval(interval);
   }
-  componentWillUnmount() {
-    //
+  resetInterval = ()=>{
+    this.setState({
+      hour: 0,
+      minute: 0,
+      second: 0
+    });
   }
 
 
 
 
   render() {
-
+    let h = this.state.hour;
+    let m = this.state.minute;
+    let s = this.state.second;
     return (
       <>
         <h2 className='timer'>
-          it is {this.state.time}
+          {`${h <= 9 ? '0' + h : h} : ${m <= 9 ? '0' + m : m} : ${s <= 9 ? '0' + s : s}`}
         </h2>
-        <button onClick={this.props.handleSetTitle}>change title</button>
+        <div className='button-box'>
+          <button className='action-button start-button' onClick={this.startInterval}>Start</button>
+          <button className='action-button stop-button' onClick={this.stopInterval}>Stop</button>
+          <button className='action-button reset-button' onClick={this.resetInterval}>Reset</button>
+        </div>
+        
       </>
     );
   }
