@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Hello from './Hello';
 import Timer from './Timer';
+import TimeList from './TimeList';
 
 
 //دیگه از روش بالا برای ساخت کامپوننت در ری اکت استفاده نمیشه
@@ -9,6 +10,7 @@ import Timer from './Timer';
 const App = () => {
   const [Title] = useState('hello my friend');
   const [isLight, setIsLight] = useState(false);
+  const [timeArr, setTimeArr] = useState(['00 : 01 : 50', '00 : 02 : 50']);
   const handleSetIsLight = () => {
     setIsLight(!isLight);
   }
@@ -34,11 +36,17 @@ const App = () => {
     }
   }, [isLight]);
 
-
+  /*
+    در مثال زیر میشه از کامپوننت به صورت سلف کلوز هم استفاده نکرد و به صورت زیر نوشت برای دسترسی بهش هم توی همون تایم لیست من هر دو مدل رو نوشتم
+    کامپوننت های تایم لیست و آیتم رو ببین
+  */
   return (
     <div className='main' style={{backgroundColor: isLight ? 'white' : 'black'}}>
       <Hello Title={Title} />
       <Timer isLight={isLight} handleSetIsLight={handleSetIsLight} />
+      <TimeList>
+        {timeArr}
+      </TimeList>
     </div>
   );
 }
