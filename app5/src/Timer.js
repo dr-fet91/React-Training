@@ -8,7 +8,7 @@ class Timer extends React.Component {
     }
   }
   componentDidMount() {
-   interval = setInterval(() => {
+    interval = setInterval(() => {
       this.setState(
         {
           time: new Date().toLocaleTimeString(),
@@ -16,20 +16,27 @@ class Timer extends React.Component {
       );
     }, 1000);
   }
-  componentDidUpdate(){
-    if(this.state.time == '11:53:35 PM'){
+  componentDidUpdate() {
+    if (this.state.time == '11:53:35 PM') {
       clearInterval(interval);
     }
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     //
   }
+
+
+
+
   render() {
 
     return (
-      <h2 className='timer'>
-        it is {this.state.time}
-      </h2>
+      <>
+        <h2 className='timer'>
+          it is {this.state.time}
+        </h2>
+        <button onClick={this.props.handleSetTitle}>change title</button>
+      </>
     );
   }
 }
