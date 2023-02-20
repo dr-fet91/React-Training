@@ -1,6 +1,6 @@
 import React from 'react';
 import { TestContext } from './TestContext';
-import TimeList from './TimeList';
+
 var interval;
 class Timer extends React.Component {
   constructor() {
@@ -12,7 +12,8 @@ class Timer extends React.Component {
       second: 0
     }
   }
-
+  // اینجا میایم از کانتکستی که توی اپ تعریف کردیم استفاده کنیم
+  static contextType = TestContext;
   startInterval = () => {
     if (this.state.isStart) {
       return;
@@ -52,7 +53,7 @@ class Timer extends React.Component {
 
   handleSaveTime = () => {
     let newTime = this.getTime();
-    this.props.setTimeArr([...this.props.timeArr, newTime]);
+    this.context.setTimeArr([...this.context.timeArr, newTime]);
   }
 
   getTime = () => {
@@ -62,14 +63,13 @@ class Timer extends React.Component {
     return `${h <= 9 ? '0' + h : h} : ${m <= 9 ? '0' + m : m} : ${s <= 9 ? '0' + s : s}`;
   }
 
-  // اینجا میایم از کانتکستی که توی اپ تعریف کردیم استفاده کنیم
-  static contextType = TestContext;
+
 
   render() {
 
     return (
       <>
-        <h2 className='timer' onClick={this.handleSaveTime} style={{color:this.context}}>
+        <h2 className='timer' onClick={this.handleSaveTime}>
           {this.getTime()}
         </h2>
         <div className='button-box'>
@@ -80,9 +80,7 @@ class Timer extends React.Component {
             style={{ backgroundColor: this.props.isLight ? 'black' : 'white', color: this.props.isLight ? 'white' : 'black' }}
           >{this.props.isLight ? 'Dark' : 'Light'}</button>
         </div>
-        <TimeList>
-          {this.props.timeArr}
-        </TimeList>
+        
       </>
     );
   }

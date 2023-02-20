@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import Item from "./Item";
+import { TestContext } from "./TestContext";
 
 const TimeList = (props)=>{
+
+    const context = useContext(TestContext);
     return (
         <div className="main-time-list">
            
-            {props.children.map((c)=>(
+            {context.timeArr.map((c, index)=>(
                 // <Item key={Math.random()} Item={c} />
-                <Item key={Math.random()}>{c}</Item>
+                <Item index={index} key={Math.random()}>{c}</Item>
             ))}
             
         </div>

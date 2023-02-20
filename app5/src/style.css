@@ -53,3 +53,11 @@ body {
 .reset-button{
     background-color: grey;
 }
+
+.main-time-list div{
+    cursor: pointer;
+    margin: 5px;
+}
+.main-time-list div:hover{
+    text-shadow: 0 0 5px;
+}
