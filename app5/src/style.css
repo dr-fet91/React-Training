@@ -36,6 +36,9 @@ body {
 .action-button:hover{
     scale: 1.2;
 }
+.action-button:focus{
+    outline: rgba(255, 215, 0, 0.5) solid 2px;
+}
 .start-button{
     background-color: green;
 }
