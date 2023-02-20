@@ -4,16 +4,39 @@ import ReactDOM from 'react-dom/client';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-const tick = ()=>{
-  const elem = (
-    <div>
+class Hello extends React.Component{
+  render(){
+    return (
       <h1>hello</h1>
+    );
+  }
+}
+class Timer extends React.Component{
+  render(){
+    return(
       <h2>
         it is {new Date().toLocaleTimeString()}
       </h2>
-    </div>
-  );
-  root.render(elem);
+    );
+  }
+}
+class App extends React.Component{
+  render(){
+    return (
+      <div>
+        <Hello />
+        <Timer />
+      </div>
+    );
+  }
+}
+// اینم میشه اما پایینیه درسته
+//const elem = new App();
+// const tick = ()=>{
+//   root.render(elem.render());
+// }
+const tick = ()=>{
+  root.render(<App />);
 }
 
 setInterval(()=>{
