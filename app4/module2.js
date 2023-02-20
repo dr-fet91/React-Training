@@ -1,0 +1,1 @@
+export var testNumber = ' 555 ';
