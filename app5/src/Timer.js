@@ -1,4 +1,5 @@
 import React from 'react';
+import { TestContext } from './TestContext';
 import TimeList from './TimeList';
 var interval;
 class Timer extends React.Component {
@@ -61,11 +62,14 @@ class Timer extends React.Component {
     return `${h <= 9 ? '0' + h : h} : ${m <= 9 ? '0' + m : m} : ${s <= 9 ? '0' + s : s}`;
   }
 
+  // اینجا میایم از کانتکستی که توی اپ تعریف کردیم استفاده کنیم
+  static contextType = TestContext;
+
   render() {
 
     return (
       <>
-        <h2 className='timer' onClick={this.handleSaveTime}>
+        <h2 className='timer' onClick={this.handleSaveTime} style={{color:this.context}}>
           {this.getTime()}
         </h2>
         <div className='button-box'>
