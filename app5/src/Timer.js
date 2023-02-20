@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeList from './TimeList';
 var interval;
 class Timer extends React.Component {
   constructor() {
@@ -11,8 +12,8 @@ class Timer extends React.Component {
     }
   }
 
-  startInterval = ()=>{
-    if(this.state.isStart){
+  startInterval = () => {
+    if (this.state.isStart) {
       return;
     }
     this.state.isStart = true;
@@ -20,13 +21,13 @@ class Timer extends React.Component {
       this.setState({
         second: this.state.second + 1,
       });
-      if(this.state.second === 60){
+      if (this.state.second === 60) {
         this.setState({
-          second : 0,
-          minute : this.state.minute + 1,
+          second: 0,
+          minute: this.state.minute + 1,
         });
       }
-      if(this.state.minute === 60){
+      if (this.state.minute === 60) {
         this.setState({
           minute: 0,
           hour: this.state.hour = 1,
@@ -34,13 +35,13 @@ class Timer extends React.Component {
       }
     }, 1000);
   }
-  stopInterval = ()=>{
+  stopInterval = () => {
     this.setState({
       isStart: false,
     });
     clearInterval(interval);
   }
-  resetInterval = ()=>{
+  resetInterval = () => {
     this.setState({
       hour: 0,
       minute: 0,
@@ -48,26 +49,36 @@ class Timer extends React.Component {
     });
   }
 
+  handleSaveTime = () => {
+    let newTime = this.getTime();
+    this.props.setTimeArr([...this.props.timeArr, newTime]);
+  }
 
-
-
-  render() {
+  getTime = () => {
     let h = this.state.hour;
     let m = this.state.minute;
     let s = this.state.second;
+    return `${h <= 9 ? '0' + h : h} : ${m <= 9 ? '0' + m : m} : ${s <= 9 ? '0' + s : s}`;
+  }
+
+  render() {
+
     return (
       <>
-        <h2 className='timer'>
-          {`${h <= 9 ? '0' + h : h} : ${m <= 9 ? '0' + m : m} : ${s <= 9 ? '0' + s : s}`}
+        <h2 className='timer' onClick={this.handleSaveTime}>
+          {this.getTime()}
         </h2>
         <div className='button-box'>
           <button className='action-button start-button' onClick={this.startInterval}>Start</button>
           <button className='action-button stop-button' onClick={this.stopInterval}>Stop</button>
           <button className='action-button reset-button' onClick={this.resetInterval}>Reset</button>
           <button className='action-button reset-button' onClick={this.props.handleSetIsLight}
-          style={{backgroundColor: this.props.isLight ? 'black' : 'white', color: this.props.isLight ? 'white' : 'black'}}
+            style={{ backgroundColor: this.props.isLight ? 'black' : 'white', color: this.props.isLight ? 'white' : 'black' }}
           >{this.props.isLight ? 'Dark' : 'Light'}</button>
         </div>
+        <TimeList>
+          {this.props.timeArr}
+        </TimeList>
       </>
     );
   }

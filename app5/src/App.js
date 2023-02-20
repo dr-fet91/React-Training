@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Hello from './Hello';
 import Timer from './Timer';
-import TimeList from './TimeList';
+
 
 
 //دیگه از روش بالا برای ساخت کامپوننت در ری اکت استفاده نمیشه
@@ -10,7 +10,7 @@ import TimeList from './TimeList';
 const App = () => {
   const [Title] = useState('hello my friend');
   const [isLight, setIsLight] = useState(false);
-  const [timeArr, setTimeArr] = useState(['00 : 01 : 50', '00 : 02 : 50']);
+  const [timeArr, setTimeArr] = useState([]);
   const handleSetIsLight = () => {
     setIsLight(!isLight);
   }
@@ -43,10 +43,8 @@ const App = () => {
   return (
     <div className='main' style={{backgroundColor: isLight ? 'white' : 'black'}}>
       <Hello Title={Title} />
-      <Timer isLight={isLight} handleSetIsLight={handleSetIsLight} />
-      <TimeList>
-        {timeArr}
-      </TimeList>
+      <Timer timeArr={timeArr} setTimeArr={setTimeArr} isLight={isLight} handleSetIsLight={handleSetIsLight} />
+      
     </div>
   );
 }

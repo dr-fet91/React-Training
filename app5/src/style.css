@@ -28,7 +28,7 @@ body {
     transition: all 200ms;
 }
 .timer:hover{
-    box-shadow: none;
+    box-shadow: 0 0 5px rgb(146, 240, 216);
 }
 .action-button{
     width: 50px;
