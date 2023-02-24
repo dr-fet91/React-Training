@@ -1,37 +1,26 @@
-import { Component, PureComponent } from "react";
+import { Component, createRef } from "react";
 import PureCompo from "./PureCompo";
 
 
 
-class PrentCompo extends PureComponent{
+class PrentCompo extends Component {
     constructor(){
         super();
-        this.state = {
-            name: 'reza',
-        };
+        this.componentRef = createRef();
     }
-    componentDidMount(){
-        setInterval(()=>{
-            this.setState({
-                name: 'reza',
-            });
-        }, 1000);
+    handleChangeCompoName = () =>{
+        this.componentRef.current.handleChangeName();
     }
-    render(){
-        console.log('  parent compo    ');
+    render() {
+        console.log(this.componentRef);
         return (
-            <div>
-                <PureCompo name={this.state.name}/>
+            <div className="container">
+                <PureCompo ref={this.componentRef} />
+                <button onClick={this.handleChangeCompoName} className="btn btn-info mx-auto">submit from parent component</button>
             </div>
+
         );
     }
 }
 
 export default PrentCompo;
-
-
-
-// در برنامه اگر ست استیت فراخوانی بشه کامپوننت رندر میشه حتی اگه مقدار تغییر نکنه اما 
-// میشه هوشمندش کرد با استفاده از 
-//PureComponent
-// با هر دو مدل نوشتم هم اروفانکشن هم کلاسی 
