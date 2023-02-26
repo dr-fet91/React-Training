@@ -1,4 +1,5 @@
 import { Component, createRef } from "react";
+import Fcomponent from "./Fcomponent";
 import PureCompo from "./PureCompo";
 
 
@@ -6,16 +7,17 @@ import PureCompo from "./PureCompo";
 class PrentCompo extends Component {
     constructor(){
         super();
-        this.componentRef = createRef();
+        this.myInput = createRef();
     }
-    handleChangeCompoName = () =>{
-        this.componentRef.current.handleChangeName();
+    
+    componentDidMount(){
+        this.myInput.current.focus();
     }
     render() {
-        console.log(this.componentRef);
         return (
             <div className="container">
-                <PureCompo ref={this.componentRef} />
+                {/* <PureCompo ref={this.componentRef} /> */}
+                <Fcomponent ref={this.myInput} />
                 <button onClick={this.handleChangeCompoName} className="btn btn-info mx-auto">submit from parent component</button>
             </div>
 
