@@ -35,6 +35,10 @@ const Content = () => {
                     */
                 }
                 <Route path="/user/add" element={<AddUser />} >
+                    {/* 
+                        مسیرهایی که انجا تعریف میشه باید با اسلش شروع نشه
+                        همچنین میشه چندتا مسیر داد یا همزمان چندتا پارامتر دریافت کرد!
+                     */}
                     <Route path=':userId' element={<EditDesc />} />
                 </Route>
                 <Route path="/posts" element={<Posts/>} />

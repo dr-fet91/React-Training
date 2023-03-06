@@ -1,8 +1,9 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import style from '../style.module.css';
 const AddUser = ()=>{
     // دریافت پارامتر از آدرس مرورگر
     const {userId} = useParams();
+    const navigate = useNavigate();
     return(
         <div className={`${style.item_content} mt-5 p-4 container-fluid container`}>
             <h4 className='text-center text-primary'>{userId ? 'ویرایش کاربر' : 'افزودن کاربر'}</h4>
@@ -36,7 +37,11 @@ const AddUser = ()=>{
                         </div>
                     </div>
                     <div className='col-12 text-start'>
-                        <button type='button' className='btn btn-danger ms-2'>بازگشت</button>
+                        {/* 
+                            اینجا از همین نویگیت که توی یوزر هم ازش برای پردازش قبل از ریدارکت کردن استفاده کردیم میشه برای ساختن دکمه های بک و اینا هم استفاده کرد
+                            مثلا اگه -1 بذاری میشه صفحه قبل اگه -2 دو میشه دو صفحه قبل همچنین اعداد مثبت بذاری برعکس میشه یعنی میفرستی به صفحه ی جلو
+                        */}
+                        <button type='button' className='btn btn-danger ms-2' onClick={()=>{navigate(-1)}}>بازگشت</button>
                         <button type='button' className='btn btn-primary ms-2'>{userId ? 'ویرایش کاربر' : 'افزودن کاربر'}</button>
                     </div>
                 </form>
