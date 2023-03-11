@@ -1,8 +1,14 @@
-import { useParams, Outlet, useNavigate } from 'react-router-dom';
+import { useParams, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import style from '../style.module.css';
 const AddUser = ()=>{
     // دریافت پارامتر از آدرس مرورگر
     const {userId} = useParams();
+    // در صورتی که بخوایم پارامتر هایی که توسط استیت ها در یو ار ال ها با استفاده از 
+    // نویگیت یا لینک ارسال کردیم که توی آدرس بار نشون داده نمیشن 
+    // همون آبجکت استیت
+    // باید با این روش دریافتش کنیم.
+    const params = useLocation();
+    console.log(params);
     const navigate = useNavigate();
     return(
         <div className={`${style.item_content} mt-5 p-4 container-fluid container`}>
